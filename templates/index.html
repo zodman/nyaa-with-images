@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for entry in entries %}
+        <div class="box media">
+            <div class="media-left">
+                <figure class="image">
+                    <img src="https://i1.wp.com/{{ entry.jikan.images.jpg.image_url|replace('https://','')}}?h=150"/>
+                </figure>
+            </div>
+            <div class="media-content">
+                <div class="columns">
+                    <div class="column">
+                        <p class="is-size-5">
+                            <a href="{{ entry.link }}"><strong>{{ entry.jikan.title }}</strong></a
+                                >
+                                {% if entry.guessit.episode or entry.guessit.episode_title %}
+                                    <small class="is-size-6">Episode: {{ entry.guessit.episode_title|default(entry.guessit.episode) }}</small
+                                        >
+                                    {% endif %}
+                                </p>
+                            </div>
+                            <div class="column"></div>
+                        </div>
+                        <a href="{{ entry.link }}" class="is-size-7">{{ entry.title }}</a>
+                        <p>
+                        <small>
+                        scrapped: 
+                        {{ entry.now }}
+                        </small>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endblock %}

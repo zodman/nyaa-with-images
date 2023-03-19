@@ -1,0 +1,8 @@
+flask
+python-dotenv
+dataset
+rss-parser
+requests
+jikanpy-v4
+diskcache
+tqdm
