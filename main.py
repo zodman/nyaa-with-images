@@ -6,17 +6,17 @@ import json
 
 load_dotenv()
 
-
-
+dir_path = os.path.dirname(os.path.realpath(__file__))
 app = flask.Flask(__name__, )
 
 
 @app.route("/")
 def index():
-    db = dataset.connect(os.environ.get("DATABASE_URL", 'sqlite:///database.db'))
+    db = dataset.connect(
+        os.environ.get("DATABASE_URL", f'sqlite:///{dir_path}/database.db'))
     table = db["entry"]
     entries = []
-    for i in table.all(order_by="now",_limit=75):
+    for i in table.all(order_by="now", _limit=75):
         i["jikan"] = json.loads(i["jikan"])
         i["guessit"] = json.loads(i["guessit"])
         if i["jikan"]:

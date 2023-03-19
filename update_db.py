@@ -12,7 +12,8 @@ import datetime
 
 load_dotenv()
 
-db = dataset.connect(os.environ.get("DATABASE_URL", 'sqlite:///database.db'))
+dir_path = os.path.dirname(os.path.realpath(__file__))
+db = dataset.connect(os.environ.get("DATABASE_URL", f'sqlite:///{dir_path}/database.db'))
 table = db["entry"]
 
 url = "https://nyaa.si/?page=rss&c=1_0&f=0"
